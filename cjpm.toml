@@ -1,0 +1,15 @@
+[package]
+  cjc-version = "0.0.1"
+  name = "multi_language_interop"
+  description = "Hello world executable that links Python and JavaScript Cangjie interop runtimes"
+  version = "0.1.0"
+  target-dir = ""
+  output-type = "executable"
+  compile-option = "--set-runtime-rpath"
+  override-compile-option = ""
+  link-option = "-L build/deps/cangjie_interop_python/build/native -lpython_bridge -lpython3.12 -ldl -L build/deps/cangjie_interop_javascript/build/native -lquickjs_bridge"
+  package-configuration = {}
+
+[dependencies]
+  interop_python = { git = "https://github.com/belolourenco/cangjie_interop_python.git", branch = "main" }
+  interop_javascript = { git = "https://github.com/belolourenco/cangjie_interop_javascript.git", branch = "extern_as_compiler_internal" }

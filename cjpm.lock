@@ -1,0 +1,6 @@
+version = 0
+
+[requires]
+  extern = {git = "https://github.com/belolourenco/cangjie_extern.git", commitId = "c1333d55a8829b3e9058bdb0e987639305590c43", branch = "main"}
+  interop_python = {git = "https://github.com/belolourenco/cangjie_interop_python.git", commitId = "e5070548fb4fd81a1c36c4307052efe63db3ab64", branch = "main"}
+  interop_javascript = {git = "https://github.com/belolourenco/cangjie_interop_javascript.git", commitId = "01e19bb887f39a1fe6df96f098bf7301e76b6836", branch = "extern_as_compiler_internal"}
