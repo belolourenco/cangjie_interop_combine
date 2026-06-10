@@ -109,11 +109,11 @@ public func pyTestExternWithModules2(externalModule: Extern<PythonRuntime>) {
     assert(circle1.radius == 10.0, "Circle 1 radius should be 10.0")
 
     println("Circle 1 area: ${circle1.area()}")
-    let circle_area = area_circle(circle1.center.x, circle1.center.y, circle1.radius)
+    let circle_area = area_circle(circle1.radius)
     assert(circle1.area() == circle_area, "Circle 1 area should be ${circle_area}")
 
     println("Circle 1 perimeter: ${circle1.perimeter()}")
-    let circle_perimeter = perimeter_circle(circle1.center.x, circle1.center.y, circle1.radius)
+    let circle_perimeter = perimeter_circle(circle1.radius)
     assert(circle1.perimeter() == circle_perimeter, "Circle 1 perimeter should be ${circle_perimeter}")
 
 

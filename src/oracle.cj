@@ -14,11 +14,11 @@ func perimeter_rectangle(x1: Float64, y1: Float64, x2: Float64, y2: Float64): Fl
     abs(x1 - x2) * 2.0 + abs(y1 - y2) * 2.0
 }
 
-func area_circle(x: Float64, y: Float64, radius: Float64): Float64 {
+func area_circle(radius: Float64): Float64 {
     Float64.getPI() * radius * radius
 }
 
-func perimeter_circle(x: Float64, y: Float64, radius: Float64): Float64 {
+func perimeter_circle(radius: Float64): Float64 {
     2.0 * Float64.getPI() * radius
 }
 
