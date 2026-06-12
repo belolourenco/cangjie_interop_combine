@@ -28,5 +28,33 @@ main(): Int64 {
     println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     pyModule = PythonRuntime.getModule("py_examples/shape.py")
     pyTestExternWithModules2(pyModule)
+
+
+    // ------------- GENERICS -------------
+
+
+    println()
+    println("++++++++++Testing Generic module with my_module.js ++++++++++")
+    println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    jsModule = JSRuntime.getModule("js_examples/my_module.js")
+    genericTestExternWithModules1(jsModule, { name: String => JSRuntime.globalAccess(name) })
+
+    println()
+    println("++++++++++Testing Generic module with my_module.py ++++++++++")
+    println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    pyModule = PythonRuntime.getModule("py_examples/my_module.py")
+    genericTestExternWithModules1(pyModule, { name: String => PythonRuntime.globalAccess(name) })
+
+    println()
+    println("++++++++++Testing Generic module with shapes.js ++++++++++")
+    println("+++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    jsModule = JSRuntime.getModule("js_examples/shape.js")
+    genericTestExternWithModules2(jsModule)
+
+    println()
+    println("++++++++++Testing Generic module with shapes.py ++++++++++")
+    println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    pyModule = PythonRuntime.getModule("py_examples/shape.py")
+    genericTestExternWithModules2(pyModule)
     return 0
 }

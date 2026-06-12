@@ -2,13 +2,13 @@ import math
 from types import SimpleNamespace
 
 
-def my_python_function():
+def my_function():
     print("Just a dummy message from Python")
     x = 10
     while (x > 0):
         print(f"Counting down: {x}")
         x -= 1
-    return "my_python_function called"
+    return "my_function called"
 
 
 globalBoolean = True

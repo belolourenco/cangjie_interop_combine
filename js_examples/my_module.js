@@ -1,5 +1,5 @@
-export function my_javascript_function() {
-  return "my_javascript_function called";
+export function my_function() {
+  return "my_function called in JavaScript";
 }
 
 export let globalBoolean = true;

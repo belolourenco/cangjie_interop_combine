@@ -5,12 +5,12 @@ import std.collection.ArrayList
 
 public func jsTestExternWithModules1(externalModule: Extern<JSRuntime>) {
 
-    // ---- my_javascript_function ----
+    // ---- my_function ----
 
-    // externalModule.my_javascript_function()
+    // externalModule.my_function()
     // ->
-    let my_javascript_function: Extern<JSRuntime> = externalModule.my_javascript_function
-    JSRuntime.functionCall(my_javascript_function, [])
+    let my_function: Extern<JSRuntime> = externalModule.my_function
+    JSRuntime.functionCall(my_function, [])
 
     // ---- lookup ----
 

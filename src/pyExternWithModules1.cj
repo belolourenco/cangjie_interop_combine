@@ -5,12 +5,12 @@ import std.collection.ArrayList
 
 public func pyTestExternWithModules1(externalModule: Extern<PythonRuntime>) {
 
-    // ---- my_python_function ----
+    // ---- my_function ----
 
-    // externalModule.my_python_function()
+    // externalModule.my_function()
     // ->
-    let my_python_function: Extern<PythonRuntime> = externalModule.my_python_function
-    PythonRuntime.functionCall(my_python_function, [])
+    let my_function: Extern<PythonRuntime> = externalModule.my_function
+    PythonRuntime.functionCall(my_function, [])
 
     // ---- lookup ----
 
