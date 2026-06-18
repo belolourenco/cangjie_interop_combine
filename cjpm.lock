@@ -1,5 +1,5 @@
 version = 0
 
 [requires]
-  interop_python = {git = "https://github.com/belolourenco/cangjie_interop_python.git", commitId = "a73d9849dedaa884205bc3f53813212986ceb5b0", branch = "main"}
+  interop_python = {git = "https://github.com/belolourenco/cangjie_interop_python.git", commitId = "b0124fa9443c4a0e8463678e58253bdf97f3c622", branch = "main"}
   interop_javascript = {git = "https://github.com/belolourenco/cangjie_interop_javascript.git", commitId = "d3cf92bfb18ff56280fc9d9dc8592e49c0e47672", branch = "extern_as_compiler_internal"}
