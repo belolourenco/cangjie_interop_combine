@@ -263,6 +263,6 @@ func genericConvertArrayToArrayList<T, GenericRuntime>(array: Extern<GenericRunt
         // TODO
         // GenericRuntime.fromExtern<T>(array[i])
         // ->
-        GenericRuntime.fromExtern<T>(GenericRuntime.indexAccess(array, i))
+        GenericRuntime.fromExtern<T>(array[i])
     })
 }
