@@ -5,10 +5,7 @@ public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntim
 
     public init(module: Extern<GenericRuntime>, x: Float64, y: Float64) {
         println("Point constructor called with x: ${x}, y: ${y}")
-        // blob = module.Point(x, y)
-        // ->
-        let pointConstructor: Extern<GenericRuntime> = module.Point
-        blob = GenericRuntime.functionCall(pointConstructor, [x, y])
+        blob = module.Point(x, y)
     }
 
     // Shallow copy constructor!
@@ -20,10 +17,7 @@ public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntim
     // Deep copy constructor!
     public init(module: Extern<GenericRuntime>, other: Point<GenericRuntime>) {
         println("Point copy constructor called with x: ${other.x}, y: ${other.y}")
-        // blob = module.Point(other.x, other.y)
-        // ->
-        let pointConstructor: Extern<GenericRuntime> = module.Point
-        blob = GenericRuntime.functionCall(pointConstructor, [other.x, other.y])
+        blob = module.Point(other.x, other.y)
     }
 
     public mut prop x: Float64 {
@@ -50,10 +44,7 @@ public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntim
     }
 
     public func distanceTo(other: Point<GenericRuntime>): Float64 {
-        // blob.distanceTo(other.blob)
-        // ->
-        let distanceToMethod: Extern<GenericRuntime> = blob.distanceTo
-        let result: Extern<GenericRuntime> = GenericRuntime.functionCall(distanceToMethod, [other.blob])
+        let result: Extern<GenericRuntime> = blob.distanceTo(other.blob)
         GenericRuntime.fromExtern<Float64>(result)
     }
 }
@@ -63,26 +54,17 @@ public interface Shape<GenericRuntime> where GenericRuntime <: Runtime<GenericRu
     func getBlob(): Extern<GenericRuntime>
 
     func name(): String {
-        // getBlob().name()
-        // ->
-        let nameMethod: Extern<GenericRuntime> = getBlob().name
-        let result: Extern<GenericRuntime> = GenericRuntime.functionCall(nameMethod, [])
+        let result: Extern<GenericRuntime> = getBlob().name()
         GenericRuntime.fromExtern<String>(result)
     }
 
     func area(): Float64 {
-        // getBlob().area()
-        // ->
-        let areaMethod: Extern<GenericRuntime> = getBlob().area
-        let result: Extern<GenericRuntime> = GenericRuntime.functionCall(areaMethod, [])
+        let result: Extern<GenericRuntime> = getBlob().area()
         GenericRuntime.fromExtern<Float64>(result)
     }
 
     func perimeter(): Float64 {
-        // getBlob().perimeter()
-        // ->
-        let perimeterMethod: Extern<GenericRuntime> = getBlob().perimeter
-        let result: Extern<GenericRuntime> = GenericRuntime.functionCall(perimeterMethod, [])
+        let result: Extern<GenericRuntime> = getBlob().perimeter()
         GenericRuntime.fromExtern<Float64>(result)
     }
 }
@@ -92,10 +74,7 @@ public class Rectangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRun
 
     public init(module: Extern<GenericRuntime>, topLeft: Point<GenericRuntime>, bottomRight: Point<GenericRuntime>) {
         println("Rectangle constructor called with topLeft: ${topLeft.x}, ${topLeft.y} and bottomRight: ${bottomRight.x}, ${bottomRight.y}")
-        // blob = module.Rectangle(topLeft.blob, bottomRight.blob)
-        // ->
-        let rectangleConstructor: Extern<GenericRuntime> = module.Rectangle
-        blob = GenericRuntime.functionCall(rectangleConstructor, [topLeft.blob, bottomRight.blob])
+        blob = module.Rectangle(topLeft.blob, bottomRight.blob)
     }
 
     public init(extern: Extern<GenericRuntime>) {
@@ -156,10 +135,7 @@ public class Circle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntim
     public let blob: Extern<GenericRuntime>
 
     public init(module: Extern<GenericRuntime>, center: Point<GenericRuntime>, radius: Float64) {
-        // blob = module.Circle(center.blob, radius)
-        // ->
-        let circleConstructor: Extern<GenericRuntime> = module.Circle
-        blob = GenericRuntime.functionCall(circleConstructor, [center.blob, radius])
+        blob = module.Circle(center.blob, radius)
     }
 
     public init(extern: Extern<GenericRuntime>) {
@@ -196,10 +172,7 @@ public class Triangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRunt
     public let blob: Extern<GenericRuntime>
 
     public init(module: Extern<GenericRuntime>, a: Point<GenericRuntime>, b: Point<GenericRuntime>, c: Point<GenericRuntime>) {
-        // blob = module.Triangle(a.blob, b.blob, c.blob)
-        // ->
-        let triangleConstructor: Extern<GenericRuntime> = module.Triangle
-        blob = GenericRuntime.functionCall(triangleConstructor, [a.blob, b.blob, c.blob])
+        blob = module.Triangle(a.blob, b.blob, c.blob)
     }
 
     public init(extern: Extern<GenericRuntime>) {

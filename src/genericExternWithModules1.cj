@@ -6,17 +6,11 @@ public func genericTestExternWithModules1<GenericRuntime>(externalModule: Extern
 
     // ---- my_function ----
 
-    // externalModule.my_function()
-    // ->
-    let my_function: Extern<GenericRuntime> = externalModule.my_function
-    GenericRuntime.functionCall(my_function, [])
+    externalModule.my_function()
 
     // ---- lookup ----
 
-    // let lookupResult: Extern<GenericRuntime> = externalModule.lookup(42.4242, 1.111)
-    // ->
-    let lookup: Extern<GenericRuntime> = externalModule.lookup
-    let lookupResult: Extern<GenericRuntime> = GenericRuntime.functionCall(lookup, [42.4242, 1.111])
+    let lookupResult: Extern<GenericRuntime> = externalModule.lookup(42.4242, 1.111)
 
     // println("Lookup coordinates: (${(Float64)lookupResult.coordinates[0]}, ${(Float64)lookupResult.coordinates[1]})")
     println("Lookup coordinates: (${GenericRuntime.fromExtern<Float64>(lookupResult.coordinates[0])}, ${GenericRuntime.fromExtern<Float64>(lookupResult.coordinates[1])})")
@@ -40,31 +34,19 @@ public func genericTestExternWithModules1<GenericRuntime>(externalModule: Extern
 
     // ---- Rectangle ----
 
-    // let rectangle: Extern<GenericRuntime> = externalModule.Rectangle(10, 11)
-    // ->
-    let rectangleConstructor: Extern<GenericRuntime> = externalModule.Rectangle
-    let rectangleObject: Extern<GenericRuntime> = GenericRuntime.functionCall(rectangleConstructor, [10, 11])
+    let rectangleObject: Extern<GenericRuntime> = externalModule.Rectangle(10, 11)
 
-    // let rectangleWidth: Extern<GenericRuntime> = rectangleObject.getWidth()
-    // ->
-    let rectangleWidthMethod: Extern<GenericRuntime> = rectangleObject.getWidth
-    let rectangleWidthResult: Extern<GenericRuntime> = GenericRuntime.functionCall(rectangleWidthMethod, [])
+    let rectangleWidthResult: Extern<GenericRuntime> = rectangleObject.getWidth()
     println("Rectangle width: ${GenericRuntime.fromExtern<Float64>(rectangleWidthResult)}")
     assert(GenericRuntime.fromExtern<Float64>(rectangleWidthResult) == 10.0, "Rectangle width should be 10.0")
 
-    // // let rectangleHeight: Extern<GenericRuntime> = rectangleObject.getHeight()
-    // // ->
-    let rectangleHeightMethod: Extern<GenericRuntime> = rectangleObject.getHeight
-    let rectangleHeightResult: Extern<GenericRuntime> = GenericRuntime.functionCall(rectangleHeightMethod, [])
+    let rectangleHeightResult: Extern<GenericRuntime> = rectangleObject.getHeight()
     println("Rectangle height: ${GenericRuntime.fromExtern<Float64>(rectangleHeightResult)}")
     assert(GenericRuntime.fromExtern<Float64>(rectangleHeightResult) == 11.0, "Rectangle height should be 11.0")
 
     // ---- createRectangle ----
 
-    // // let rectangleObject2: Extern<GenericRuntime> = externalModule.createRectangle()
-    // // ->
-    let createRectangleMethod: Extern<GenericRuntime> = externalModule.createRectangle
-    let rectangleObject2: Extern<GenericRuntime> = GenericRuntime.functionCall(createRectangleMethod, [])
+    let rectangleObject2: Extern<GenericRuntime> = externalModule.createRectangle()
 
     rectangleObject2.width = 42.0
 
@@ -80,20 +62,14 @@ public func genericTestExternWithModules1<GenericRuntime>(externalModule: Extern
     println("Rectangle height: ${GenericRuntime.fromExtern<Float64>(rectangleHeight2)}")
     assert(GenericRuntime.fromExtern<Float64>(rectangleHeight2) == 13.0, "Rectangle height should be 13.0")
 
-    // let area = rectangleObject2.area()
-    // ->
-    let areaMethod: Extern<GenericRuntime> = rectangleObject2.area
-    let areaResult: Extern<GenericRuntime> = GenericRuntime.functionCall(areaMethod, [])
+    let areaResult = rectangleObject2.area()
 
     // println("Rectangle area: ${(Float64)areaResult}")
     // ->
     println("Rectangle area: ${GenericRuntime.fromExtern<Float64>(areaResult)}")
     assert(GenericRuntime.fromExtern<Float64>(areaResult) == 546.0, "Rectangle area should be 546.0")
 
-    // let perimeter = rectangleObject2.perimeter()
-    // ->
-    let perimeterMethod: Extern<GenericRuntime> = rectangleObject2.perimeter
-    let perimeterResult: Extern<GenericRuntime> = GenericRuntime.functionCall(perimeterMethod, [])
+    let perimeterResult = rectangleObject2.perimeter()
 
     // println("Rectangle perimeter: ${(Float64)perimeterResult}")
     // ->
@@ -227,7 +203,7 @@ public func genericTestExternWithModules1<GenericRuntime>(externalModule: Extern
     // TODO: to be discussed!
     let e_object: Extern<GenericRuntime> = globalAccess("Object")
     let e_keys: Extern<GenericRuntime> = e_object.keys
-    let mapKeys: Extern<GenericRuntime> = GenericRuntime.functionCall(e_keys, [globalStringNumberMap])
+    let mapKeys: Extern<GenericRuntime> = e_keys(globalStringNumberMap)
     let mapKeysLength: Extern<GenericRuntime> = mapKeys.length
 
     let mapKeysLengthInt64: Int64 = GenericRuntime.fromExtern<Int64>(mapKeysLength)
@@ -241,7 +217,7 @@ public func genericTestExternWithModules1<GenericRuntime>(externalModule: Extern
     assert(mapKeysElements[2] == "answer", "Global string number map key 2 should be 'answer'")
     
     let e_values: Extern<GenericRuntime> = e_object.values
-    let mapValues: Extern<GenericRuntime> = GenericRuntime.functionCall(e_values, [globalStringNumberMap])
+    let mapValues: Extern<GenericRuntime> = e_values(globalStringNumberMap)
     let mapValuesLength: Extern<GenericRuntime> = mapValues.length
     let mapValuesLengthInt64: Int64 = GenericRuntime.fromExtern<Int64>(mapValuesLength)
     println("Global string number map values length: ${mapValuesLengthInt64}")
