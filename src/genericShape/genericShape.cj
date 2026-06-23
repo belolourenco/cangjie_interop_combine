@@ -24,7 +24,7 @@ public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntim
         get() {
             // (Float64)blob.x
             let value: Extern<GenericRuntime> = blob.x
-            GenericRuntime.fromExtern<Float64>(value)
+            (Float64)value
         }
         set(value) {
             blob.x = value
@@ -36,7 +36,7 @@ public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntim
             // (Float64)blob.y
             // ->
             let value: Extern<GenericRuntime> = blob.y
-            GenericRuntime.fromExtern<Float64>(value)
+            (Float64)value
         }
         set(value) {
             blob.y = value
@@ -45,7 +45,7 @@ public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntim
 
     public func distanceTo(other: Point<GenericRuntime>): Float64 {
         let result: Extern<GenericRuntime> = blob.distanceTo(other.blob)
-        GenericRuntime.fromExtern<Float64>(result)
+        (Float64)result
     }
 }
 
@@ -55,17 +55,17 @@ public interface Shape<GenericRuntime> where GenericRuntime <: Runtime<GenericRu
 
     func name(): String {
         let result: Extern<GenericRuntime> = getBlob().name()
-        GenericRuntime.fromExtern<String>(result)
+        (String)result
     }
 
     func area(): Float64 {
         let result: Extern<GenericRuntime> = getBlob().area()
-        GenericRuntime.fromExtern<Float64>(result)
+        (Float64)result
     }
 
     func perimeter(): Float64 {
         let result: Extern<GenericRuntime> = getBlob().perimeter()
-        GenericRuntime.fromExtern<Float64>(result)
+        (Float64)result
     }
 }
 
@@ -111,7 +111,7 @@ public class Rectangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRun
             // (Float64)blob.width
             // ->
             let value: Extern<GenericRuntime> = blob.width
-            GenericRuntime.fromExtern<Float64>(value)
+            (Float64)value
         }
         set(value) {
             blob.width = value
@@ -123,7 +123,7 @@ public class Rectangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRun
             // (Float64)blob.height
             // ->
             let value: Extern<GenericRuntime> = blob.height
-            GenericRuntime.fromExtern<Float64>(value)
+            (Float64)value
         }
         set(value) {
             blob.height = value
@@ -160,7 +160,7 @@ public class Circle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntim
             // (Float64)blob.radius
             // ->
             let value: Extern<GenericRuntime> = blob.radius
-            GenericRuntime.fromExtern<Float64>(value)
+            (Float64)value
         }
         set(value) {
             blob.radius = value
