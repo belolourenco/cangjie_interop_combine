@@ -6,7 +6,6 @@ PYTHON_CONFIG ?= python3-config
 DEPS_DIR := build/deps
 PYTHON_INTEROP_REPO := https://github.com/belolourenco/cangjie_interop_python.git
 JAVASCRIPT_INTEROP_REPO := https://github.com/belolourenco/cangjie_interop_javascript.git
-JAVASCRIPT_INTEROP_BRANCH := extern_as_compiler_internal
 PYTHON_INTEROP_DIR := $(DEPS_DIR)/cangjie_interop_python
 JAVASCRIPT_INTEROP_DIR := $(DEPS_DIR)/cangjie_interop_javascript
 
@@ -38,4 +37,4 @@ $(PYTHON_INTEROP_DIR)/cjpm.toml:
 
 $(JAVASCRIPT_INTEROP_DIR)/cjpm.toml:
 	mkdir -p $(DEPS_DIR)
-	git clone --branch $(JAVASCRIPT_INTEROP_BRANCH) $(JAVASCRIPT_INTEROP_REPO) $(JAVASCRIPT_INTEROP_DIR)
+	git clone $(JAVASCRIPT_INTEROP_REPO) $(JAVASCRIPT_INTEROP_DIR)
