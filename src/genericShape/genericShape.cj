@@ -1,6 +1,6 @@
 package multi_language_interop.genericShape
 
-public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntime> {
+public class Point<GenericRuntime> where GenericRuntime <: ForeignRuntime<GenericRuntime> {
     public let blob: Extern<GenericRuntime>
 
     public init(module: Extern<GenericRuntime>, x: Float64, y: Float64) {
@@ -22,9 +22,8 @@ public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntim
 
     public mut prop x: Float64 {
         get() {
-            // (Float64)blob.x
             let value: Extern<GenericRuntime> = blob.x
-            (Float64)value
+            GenericRuntime.fromExtern<Float64>(value)
         }
         set(value) {
             blob.x = value
@@ -33,10 +32,8 @@ public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntim
 
     public mut prop y: Float64 {
         get() {
-            // (Float64)blob.y
-            // ->
             let value: Extern<GenericRuntime> = blob.y
-            (Float64)value
+            GenericRuntime.fromExtern<Float64>(value)
         }
         set(value) {
             blob.y = value
@@ -45,31 +42,31 @@ public class Point<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntim
 
     public func distanceTo(other: Point<GenericRuntime>): Float64 {
         let result: Extern<GenericRuntime> = blob.distanceTo(other.blob)
-        (Float64)result
+        GenericRuntime.fromExtern<Float64>(result)
     }
 }
 
-public interface Shape<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntime> {
+public interface Shape<GenericRuntime> where GenericRuntime <: ForeignRuntime<GenericRuntime> {
 
     func getBlob(): Extern<GenericRuntime>
 
     func name(): String {
         let result: Extern<GenericRuntime> = getBlob().name()
-        (String)result
+        GenericRuntime.fromExtern<String>(result)
     }
 
     func area(): Float64 {
         let result: Extern<GenericRuntime> = getBlob().area()
-        (Float64)result
+        GenericRuntime.fromExtern<Float64>(result)
     }
 
     func perimeter(): Float64 {
         let result: Extern<GenericRuntime> = getBlob().perimeter()
-        (Float64)result
+        GenericRuntime.fromExtern<Float64>(result)
     }
 }
 
-public class Rectangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntime> {
+public class Rectangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntime <: ForeignRuntime<GenericRuntime> {
     public let blob: Extern<GenericRuntime>
 
     public init(module: Extern<GenericRuntime>, topLeft: Point<GenericRuntime>, bottomRight: Point<GenericRuntime>) {
@@ -108,10 +105,8 @@ public class Rectangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRun
 
     public mut prop width: Float64 {
         get() {
-            // (Float64)blob.width
-            // ->
             let value: Extern<GenericRuntime> = blob.width
-            (Float64)value
+            GenericRuntime.fromExtern<Float64>(value)
         }
         set(value) {
             blob.width = value
@@ -120,10 +115,8 @@ public class Rectangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRun
 
     public mut prop height: Float64 {
         get() {
-            // (Float64)blob.height
-            // ->
             let value: Extern<GenericRuntime> = blob.height
-            (Float64)value
+            GenericRuntime.fromExtern<Float64>(value)
         }
         set(value) {
             blob.height = value
@@ -131,7 +124,7 @@ public class Rectangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRun
     }
 }
 
-public class Circle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntime> {
+public class Circle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntime <: ForeignRuntime<GenericRuntime> {
     public let blob: Extern<GenericRuntime>
 
     public init(module: Extern<GenericRuntime>, center: Point<GenericRuntime>, radius: Float64) {
@@ -157,10 +150,8 @@ public class Circle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntim
 
     public mut prop radius: Float64 {
         get() {
-            // (Float64)blob.radius
-            // ->
             let value: Extern<GenericRuntime> = blob.radius
-            (Float64)value
+            GenericRuntime.fromExtern<Float64>(value)
         }
         set(value) {
             blob.radius = value
@@ -168,7 +159,7 @@ public class Circle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntim
     }
 }
 
-public class Triangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntime <: Runtime<GenericRuntime> {
+public class Triangle<GenericRuntime> <: Shape<GenericRuntime> where GenericRuntime <: ForeignRuntime<GenericRuntime> {
     public let blob: Extern<GenericRuntime>
 
     public init(module: Extern<GenericRuntime>, a: Point<GenericRuntime>, b: Point<GenericRuntime>, c: Point<GenericRuntime>) {

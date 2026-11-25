@@ -5,7 +5,7 @@ import std.collection.ArrayList
 
 import multi_language_interop.genericShape.*
 
-public func genericTestExternWithModules2<GenericRuntime>(externalModule: Extern<GenericRuntime>) where GenericRuntime <: Runtime<GenericRuntime> {
+public func genericTestExternWithModules2<GenericRuntime>(externalModule: Extern<GenericRuntime>) where GenericRuntime <: ForeignRuntime<GenericRuntime> {
 
     // ---- Point ----
     let point1 = Point(externalModule, 10.0, 20.0)
@@ -141,7 +141,7 @@ public func genericTestExternWithModules2<GenericRuntime>(externalModule: Extern
 }
 
 
-func print_all_shapes<GenericRuntime>(shapes: ArrayList<Shape<GenericRuntime>>) where GenericRuntime <: Runtime<GenericRuntime> {
+func print_all_shapes<GenericRuntime>(shapes: ArrayList<Shape<GenericRuntime>>) where GenericRuntime <: ForeignRuntime<GenericRuntime> {
     for (shape in shapes) {
         println("Shape: ${shape.name()}, area: ${shape.area()}, perimeter: ${shape.perimeter()}")
     }

@@ -1,5 +1,11 @@
-version = 0
+version = 1
 
-[requires]
-  interop_python = {git = "https://github.com/belolourenco/cangjie_interop_python.git", commitId = "2ae18e04097a56619905bc8ee9c27d8f1a3cc744", branch = "main"}
-  interop_javascript = {git = "https://github.com/belolourenco/cangjie_interop_javascript.git", commitId = "231922e517ea52750f4bb1bcb32c6dfceae2ab05", branch = "extern_as_compiler_internal"}
+[requires."interop_javascript"]
+version = "0.1.0"
+source = "git+https://github.com/belolourenco/cangjie_interop_javascript.git#0129de1f5be66c97c4b0d11ece3a5b39238af5ec"
+dependencies = []
+
+[requires."interop_python"]
+version = "0.1.0"
+source = "git+https://github.com/belolourenco/cangjie_interop_python.git#ade10f0c6e7593426d891dbc86cbb6d3add519b6"
+dependencies = []
